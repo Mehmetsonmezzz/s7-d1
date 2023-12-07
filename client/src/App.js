@@ -16,6 +16,8 @@ export default function App() {
       axios
         .get("http://localhost:5001/api/filmler") // Burayı Postman'le çalışın
         .then((response) => {
+          console.log(response);
+          setMovieList(response.data);
           // Bu kısmı log statementlarıyla çalışın
           // ve burdan gelen response'u 'movieList' e aktarın
         })
@@ -41,14 +43,11 @@ export default function App() {
       />
 
       <Switch>
-        <Route path="/about">
-          <div>about</div>
-        </Route>
-        <Route path="/users">
-          <div>users</div>
+        <Route path="/filmler/:id">
+          <Film />
         </Route>
         <Route path="/">
-          <div>bu div</div>
+          <FilmListesi movies={movieList} />
         </Route>
       </Switch>
     </div>
